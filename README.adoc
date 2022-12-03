@@ -15,10 +15,15 @@
 This repo contains a slide deck for a basic, general introduction to
 RISC-V.  Please feel free to use it for your own teaching.
 
-The slide deck document is written in LaTeX.  Figures included in the
-LaTeX are either directly PNGs (e.g., screenshots), or created as SVGs
-in Inkscape and converted to PNGs.  The source is processed standardly
-via the pdflatex tool.
+The slide deck is: `RSN_RV_Tute.pdf`
+
+Official RISC-V specifications can be found at: https://riscv.org/technical/specifications/
+
+The slide deck source is LaTeX and is processed standardly via the
+`pdflatex` tool.  The main source file is `RSN_RV_Tute.tex`.  Figures
+included in the LaTeX are in `Figs/`, and are either directly PNGs
+(e.g., screenshots), or created as SVGs in Inkscape and converted to
+PNGs (see the `Figs/Makefile` for the conversion script).
 
 To re-generate the PDF, just do:
 
@@ -26,6 +31,4 @@ To re-generate the PDF, just do:
     $ make
 ----
 
-Official RISC-V specification can be found at:
-
-https://riscv.org/technical/specifications/
+This will also update SVG->PNG conversions in `Figs/`.
