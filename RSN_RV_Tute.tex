@@ -636,11 +636,11 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
 \begin{center}
   {\Huge
-    Standard Privileged ISA: CSRs (Control and Status Registers}
+    Standard Privileged ISA: CSRs (Control and Status Registers)}
 
   \vspace*{0.2in}
 
-  \begin{minipage}{9in}\Large
+  \begin{minipage}{9.5in}\Large
     \begin{itemize}
 
       \item CSRs: additional set of registers in the CPU, identified
@@ -860,6 +860,9 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
   \vspace{1in}
 
   \begin{itemize}\Large
+  \item On any exception, the cause is recorded in CSR {\tt mcause}
+    during the transfer of control to the exception handler.
+
   \item Exception-handler code uses {\tt mcause} to discover what kind
     of event caused this exception, using which it can branch to
     event-type-specific handlers.
