@@ -1,0 +1,31 @@
+= Basic, General Introduction to RISC-V
+(c) 2022 Rishiyur S. Nikhil
+:revnumber: v1.0
+:revdate: timestamp at bottom of this document
+:sectnums:
+:toc:
+:toclevels: 5
+:toc: left
+:toc-title: Contents
+:description: Basic, General Introduction to RISC-V
+:keywords: RISC-V
+:imagesdir: Doc/Figs
+:data-uri:
+
+This repo contains a slide deck for a basic, general introduction to
+RISC-V.  Please feel free to use it for your own teaching.
+
+The slide deck document is written in LaTeX.  Figures included in the
+LaTeX are either directly PNGs (e.g., screenshots), or created as SVGs
+in Inkscape and converted to PNGs.  The source is processed standardly
+via the pdflatex tool.
+
+To re-generate the PDF, just do:
+
+----
+    $ make
+----
+
+Official RISC-V specification can be found at:
+
+https://riscv.org/technical/specifications/

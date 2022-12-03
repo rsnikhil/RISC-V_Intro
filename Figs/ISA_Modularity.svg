@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="11in"
+   height="8.5in"
+   viewBox="0 0 279.4 215.9"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="ISA_Modularity.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="in"
+     inkscape:zoom="0.91098485"
+     inkscape:cx="528"
+     inkscape:cy="407.80042"
+     inkscape:window-width="1801"
+     inkscape:window-height="970"
+     inkscape:window-x="68"
+     inkscape:window-y="38"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     objecttolerance="1"
+     guidetolerance="1"
+     gridtolerance="1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(1.1) rotate(180) translate(1,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path109765" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Mend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) rotate(180) translate(10,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path109753" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path109744" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffeeaa;stroke:#800000;stroke-width:0.264998;stroke-linecap:round"
+       id="rect65632"
+       width="121.82912"
+       height="81.16291"
+       x="29.531536"
+       y="125.5202"
+       rx="5.5004768"
+       ry="5.3783464" />
+    <rect
+       style="fill:#ffeeaa;stroke:#800000;stroke-width:0.264999;stroke-linecap:round"
+       id="rect846"
+       width="95.46582"
+       height="46.339607"
+       x="150.84312"
+       y="51.038185"
+       rx="5.5563331"
+       ry="4.7119708" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="154.45799"
+       y="58.705513"
+       id="text3512"><tspan
+         sodipodi:role="line"
+         id="tspan3510"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="154.45799"
+         y="58.705513">M:   Integer multiply/divide</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="154.45799"
+         y="65.761063"
+         id="tspan14230">A:    Atomic memory ops</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="154.45799"
+         y="72.816612"
+         id="tspan14352">F,D: 32 floating point regs,</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="154.45799"
+         y="79.872162"
+         id="tspan14596">        floating point ops</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="154.45799"
+         y="86.927711"
+         id="tspan75620">        (single &amp; double precision)</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="154.45799"
+         y="93.983261"
+         id="tspan22754">C:    Compressed</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="33.391003"
+       y="132.92413"
+       id="text39568"><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="33.391003"
+         y="132.92413"
+         id="tspan39566">CSRs (Control/Status regs)</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="33.391003"
+         y="139.97969"
+         id="tspan44696">3 privilege levels:</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="33.391003"
+         y="147.03523"
+         id="tspan44698">    M: Machine</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="33.391003"
+         y="154.09079"
+         id="tspan46152">    S:  Supervisor</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="33.391003"
+         y="161.14633"
+         id="tspan59114">            Optional Virtual Memory schemes</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="33.391003"
+         y="168.20189"
+         id="tspan59226">            Sv32 (for RV32)</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="33.391003"
+         y="175.25743"
+         id="tspan59228">            Sv39 and Sv43 (for RV64)</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="33.391003"
+         y="182.31299"
+         id="tspan46770">    U:  User</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="33.391003"
+         y="189.36853"
+         id="tspan59230">Privileged instructions, including</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="33.391003"
+         y="196.42409"
+         id="tspan59652">    {M,S,U}RET for returns from</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="33.391003"
+         y="203.47963"
+         id="tspan131766">     system calls</tspan></text>
+    <rect
+       style="fill:#ffeeaa;stroke:#800000;stroke-width:0.264999;stroke-linecap:round"
+       id="rect66141"
+       width="80.934402"
+       height="16.561499"
+       x="32.310047"
+       y="50.836304"
+       rx="3.0520995"
+       ry="2.9272401" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="35.924953"
+       y="58.176346"
+       id="text66153"><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="35.924953"
+         y="58.176346"
+         id="tspan66151">RV32I: 32-bit PC, 32 regs</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="35.924953"
+         y="65.231895"
+         id="tspan109445">    About 40 instructions</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="31.691616"
+       y="48.122169"
+       id="text73081"><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="31.691616"
+         y="48.122169"
+         id="tspan75757">Unprivileged basic Integer ISAs</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="152.87051"
+       y="48.122169"
+       id="text82613"><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="152.87051"
+         y="48.122169"
+         id="tspan82611">Unprivileged optional ISA extensions</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="35.8321"
+       y="123.36012"
+       id="text89721"><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="35.8321"
+         y="123.36012"
+         id="tspan89719">Standard Privileged ISA</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="159.12732"
+       y="122.30178"
+       id="text91163"><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="159.12732"
+         y="122.30178"
+         id="tspan91161">Alternative non-standard</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="159.12732"
+         y="129.35733"
+         id="tspan98287">Privileged ISAs</tspan></text>
+    <rect
+       style="fill:#ffeeaa;stroke:#800000;stroke-width:0.264999;stroke-linecap:round"
+       id="rect104897"
+       width="22.38195"
+       height="39.830753"
+       x="158.68741"
+       y="133.15517"
+       rx="5.5563331"
+       ry="4.7119708" />
+    <rect
+       style="fill:#ffeeaa;stroke:#800000;stroke-width:0.264999;stroke-linecap:round"
+       id="rect104899"
+       width="10.48448"
+       height="27.939409"
+       x="190.422"
+       y="138.63187"
+       rx="3.3051083"
+       ry="2.7313697" />
+    <rect
+       style="fill:#ffeeaa;stroke:#800000;stroke-width:0.265;stroke-linecap:round"
+       id="rect104901"
+       width="17.570971"
+       height="46.504669"
+       x="209.95752"
+       y="151.63963"
+       rx="5.5563335"
+       ry="4.7119708" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       d="m 115.59089,68.007397 c 5.50813,11.096334 6.39064,31.441958 6.39064,31.441958 l -0.25203,17.188785"
+       id="path109742"
+       sodipodi:nodetypes="ccc" />
+    <rect
+       style="fill:#ffeeaa;stroke:#800000;stroke-width:0.265;stroke-linecap:round"
+       id="rect30355"
+       width="80.851212"
+       height="14.079768"
+       x="32.310051"
+       y="67.769653"
+       rx="2.1909194"
+       ry="2.1102977" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="35.924953"
+       y="73.522194"
+       id="text30361"><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="35.924953"
+         y="73.522194"
+         id="tspan30359">RV64I: 64-bit PC, 32 regs</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="35.924953"
+         y="80.577744"
+         id="tspan56453">    a few more instructions</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="103.42976"
+       y="106.63531"
+       id="text36469"><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="103.42976"
+         y="106.63531"
+         id="tspan36467">ECALL instruction</tspan></text>
+  </g>
+</svg>
