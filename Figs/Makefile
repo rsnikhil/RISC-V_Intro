@@ -4,6 +4,8 @@ PNGs_FROM_SVGs = \
 	CSRRW.png \
 	Exception_Handling.png \
 	VM_Sv39.png \
+	Common_System_Components.png \
+	Timer.png \
 
 
 default: $(PNGs_FROM_SVGs)

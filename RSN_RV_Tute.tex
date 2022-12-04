@@ -988,6 +988,56 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 \clearpage
 
 % ================================================================
+% Common System Components
+
+\begin{center}
+  {\Huge
+    Common System Components accompanying RISC-V Cores}
+
+  \vspace*{1in}
+
+  \fbox{\includegraphics[width=7in]{Figs/Common_System_Components.png}}
+
+  \vspace*{0.5in}
+
+  {\LARGE Each is described in more detail in the following slides.}
+
+\end{center}
+
+\clearpage
+
+% ================================================================
+% Timer
+
+\begin{center}
+  {\Huge
+    Timer: Common System Component accompanying RISC-V Cores}
+
+  \vspace*{0.2in}
+
+  \fbox{\includegraphics[width=6in]{Figs/Timer.png}}
+
+  \vspace*{0.3in}
+
+  \begin{minipage}[t]{9in}
+    \begin{itemize}\LARGE
+    \item For SW to measure real-time, and for real-time timer interupts
+    \item Contains two memory-mapped registers, MTIME and MTIMECMP
+    \item MTIME ticks upwards constantly.
+    \item Timer Interrupts: typical usage:
+      \begin{itemize}
+      \item CPU reads MTIME (let's call it $t$)
+      \item CPU writes $t + \delta$ in MTIMECMP
+      \item When MTIME ticks up by $\delta$ (so MTIME $\geq$
+        MTIMECMP), delivers an interrupt to CSR MIP at the MTIP bit position.
+      \end{itemize}
+    \end{itemize}
+  \end{minipage}
+\end{center}
+
+\clearpage
+
+% ================================================================
 % TODO
 
 \begin{center}
