@@ -1038,30 +1038,116 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 \clearpage
 
 % ================================================================
-% TODO
+% SW Interruptor
 
 \begin{center}
   {\Huge
-    TODO}
+    SW Interruptor: Common System Component accompanying RISC-V Cores}
+
+  \vspace*{0.2in}
+
+  \fbox{\includegraphics[width=6in]{Figs/SW_Interruptor.png}}
+
+  \vspace*{0.3in}
+
+  \begin{minipage}[t]{9in}
+    \begin{itemize}\LARGE
+    \item For a hart to deliver a ``sofware interrupt'' to another (or same) hart.
+    \item Illustration shows only two harts, but there could be more (multicore).
+    \item Contains one memory-mapped register, MSIP
+    \item SW Interruptor: typical usage:
+      \begin{itemize}
+      \item Hart $I$ writes MSIP [$J$] to deliver a SW interrupt to hart $J$
+      \item MSIP [$J$] is connected to the CSR MIP at the MSIP bit position (in core $J$).
+      \end{itemize}
+    \end{itemize}
+  \end{minipage}
+\end{center}
+
+\clearpage
+
+% ================================================================
+% PLIC
+
+\begin{center}
+  {\Huge
+    PLIC: Common System Component accompanying RISC-V Cores}
 
   \vspace*{0.5in}
 
-  \begin{minipage}{9in}\LARGE
-    These slides are still to be created (in progress)
+  \fbox{\includegraphics[width=6in]{Figs/PLIC.png}}
 
-    \vspace{0.5in}
+  \vspace*{0.5in}
 
-    \begin{itemize}
+  \begin{minipage}[t]{9in}
+    \begin{itemize}\LARGE
 
-    \item Common artefacts attached to cores:
-      \begin{itemize}
-      \item CLIC: software interrupts, real-time timer, timer interrupts
-      \item PLIC: Platform-Level Interrupt controller
-      \item Debug Module
-      \end{itemize}
+    \item Conceptually a matrix connecting an interrupt request line
+      from a device to MIP[MEIP] or MIP[SEIP] of any of multiple harts.
+
+    \item Illustration shows only two harts, but there could be more (multicore).
+
+    \item Matrix nodes can be programmed by MMIO from cores to
+      configure connectivity, priority, arbitration, interrupt masks, {\etc}
+
+    \item A device interrupt can connect to multiple cores; PLIC has
+      facilities for a core to ``claim'' an interrupt atomically.
     \end{itemize}
+  \end{minipage}
+\end{center}
 
-    \item Comments on software for RISC-V
+\clearpage
+
+% ================================================================
+% Debug Module
+
+\begin{center}
+  {\Huge
+    Debug Module: Common System Component accompanying RISC-V Cores}
+
+  \vspace*{0.5in}
+
+  \fbox{\includegraphics[width=4in]{Figs/Debug_Module.png}}
+
+  \vspace*{0.5in}
+
+  \begin{minipage}[t]{9in}
+    \begin{itemize}\LARGE
+
+    \item A RISC-V Debug Module is a HW module closely connected to
+      multiple harts.  Can control them individually and collectively.
+
+    \item Functions: Reset hart, read/write registers and CSRs,
+      read/write memory, stop/start/continue/single-step, set
+      breakpoints, set watchpoints, ...
+
+    \item Is controlled through a standard Debug Module Interface
+      (DMI).
+
+    \item Open-source code exists to JTAG-encode the DMI interface.
+
+    \item Can connect from standard OpenOCD (Open On Chip Debugger) and GDB.
+    \end{itemize}
+  \end{minipage}
+\end{center}
+
+\clearpage
+
+% ================================================================
+% RISC-V Software
+
+\begin{center}
+  {\Huge
+    A Note about the RISC-V Software Ecosystem}
+
+  \vspace*{1in}
+
+  \begin{minipage}{9in}\LARGE
+    \begin{itemize}
+    \item Mature: GNU toolchain (gcc, gdb, ...)
+    \item Mature: Linux, FreeRTOS, seL4, ...
+    \item Hundreds/thousands of other porting efforts underway; ecosystem grows every day.
+    \end{itemize}
   \end{minipage}
 
 \end{center}
@@ -1071,63 +1157,3 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 % ================================================================
 
 \end{document}
-
-% ****************************************************************
-% ****************************************************************
-% ****************************************************************
-
-% ================================================================
-% TEMPLATES
-
-\begin{center}
-  {\Huge
-    TODO}
-
-  \vspace*{0.5in}
-
-  \begin{minipage}{9in}\LARGE
-    These slides are still to be created (in progress)
-
-    \vspace{0.5in}
-
-    \begin{itemize}
-
-    \item Privileged ISA overview
-
-    \item Privileged ISA
-      \begin{itemize}
-      \item CSRs (Control and Status registers)
-      \item Exceptions (traps and interrupts)
-      \item Supervisor privilege level and Virtual Memory
-      \end{itemize}
-
-    \item Common artefacts attached to cores:
-      \begin{itemize}
-      \item CLIC: software interrupts, real-time timer, timer interrupts
-      \item PLIC: Platform-Level Interrupt controller
-      \item Debug Module
-      \end{itemize}
-    \end{itemize}
-
-    \item Comments on software for RISC-V
-  \end{minipage}
-
-\end{center}
-
-\clearpage
-
-\begin{figure}[htp]
-    \centering
-    {\Huge Slide Title}
-
-    \vspace{0.5in}
-
-    \begin{minipage}{9in}\LARGE
-      \begin{itemize}
-      \end{itemize}
-    \end{minipage}
-\end{figure}
-
-\clearpage
-
-% ================================================================

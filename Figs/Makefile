@@ -6,6 +6,9 @@ PNGs_FROM_SVGs = \
 	VM_Sv39.png \
 	Common_System_Components.png \
 	Timer.png \
+	SW_Interruptor.png \
+	PLIC.png \
+	Debug_Module.png \
 
 
 default: $(PNGs_FROM_SVGs)
