@@ -75,9 +75,9 @@
 \begin{center}
   {\Huge Contents}
 
-  \vspace{0.5in}
+  \vspace{0.2in}
 
-  \begin{minipage}{9in}\LARGE
+  \begin{minipage}{6in}\Large
     \begin{itemize}
 
     \item RISC-V: general information
@@ -96,17 +96,25 @@
       \begin{itemize}
       \item CSRs (Control and Status registers)
       \item Exceptions (traps and interrupts)
-      \item Supervisor privilege level and Virtual Memory
+      \item Virtual Memory in Supervisor privilege level
       \end{itemize}
 
     \item Common artefacts attached to cores:
       \begin{itemize}
-      \item CLIC: software interrupts, real-time timer, timer interrupts
+      \item Software Interruptor, Timer with timer interrupts
       \item PLIC: Platform-Level Interrupt controller
       \item Debug Module
       \end{itemize}
 
-    \item Comments on software for RISC-V
+    \item Comments on RISC-V software ecosystem
+
+    \item Verification
+      \begin{itemize}
+      \item Formal Specification of RISC-C ISA
+      \item Golden reference models
+      \item Standard ISA tests
+      \item Other tests
+      \end{itemize}
     \end{itemize}
   \end{minipage}
 \end{center}
@@ -215,7 +223,10 @@
           \end{itemize}
 
         \item RISC-V seems well on its way to becoming one of the
-          three dominant ISAs (along with x86 and ARM).
+          three dominant ISAs (along with x86 and ARM).  Over time, it
+          may also displace the numerous lesser-known ISAs used for
+          microcontrollers.
+
       \end{itemize}
     \end{minipage}
 \end{figure}
@@ -574,6 +585,26 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
     \end{itemize}
   \end{minipage}
+\end{center}
+
+\clearpage
+
+% ================================================================
+% Transition to Privileged ISA
+
+\vspace*{3in}
+
+\begin{center}\Huge
+  \emph{Standard Privileged ISA}
+
+\vfill
+
+\begin{minipage}{9in}\Large
+  $^*$ Because of clean ECALL from Unprivileged ISA, easy to
+  substitute non-standard Privileged ISAs, {\eg} containing just basic
+  trap handling for embedded applications.
+\end{minipage}
+
 \end{center}
 
 \clearpage
@@ -1147,6 +1178,156 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
     \item Mature: GNU toolchain (gcc, gdb, ...)
     \item Mature: Linux, FreeRTOS, seL4, ...
     \item Hundreds/thousands of other porting efforts underway; ecosystem grows every day.
+    \end{itemize}
+  \end{minipage}
+
+\end{center}
+
+\clearpage
+
+% ================================================================
+% Transition to Verification
+
+\begin{center}\Huge
+  \vspace*{2in}
+
+  \emph{Verification}
+
+  \vspace*{1in}
+  
+  \begin{minipage}{7in}\LARGE
+    \begin{itemize}
+    \item Formal and Reference Models of RISC-V CPUs
+    \item Standard ISA Tests
+    \item Google open source ``riscv-dv'' instruction stream generator
+    \end{itemize}
+  \end{minipage}
+
+\end{center}
+
+\clearpage
+
+% ================================================================
+% Formal and Reference Models of RISC-V CPUs
+
+\begin{center}
+  {\Huge
+    Formal Specification of RISC-V ISA}
+
+  \vspace*{0.5in}
+
+  \begin{minipage}{9in}\LARGE
+    RISC-V is the \emph{only} major ISA with a public formal specification.$^*$
+
+    \vspace{3ex}
+
+    Formal Specification (Unprivileged RV32/64 IMAFDC, Privileged):
+    \begin{itemize}
+    \item The formal spec itself: \url{https://github.com/riscv/sail-riscv}
+
+    \item ``A Tour of the RISC-V ISA Formal Specification'':
+      \url{https://github.com/rsnikhil/RISCV_ISA_Spec_Tour} by
+      R.S.Nikhil, RISC-V Summit 2019.
+      Video: \url{https://www.youtube.com/watch?v=k3NhEtk8TAs}
+    \end{itemize}
+
+    \vspace{1ex}
+
+    Written in {\bf Sail}, a language (DSL) for ISA formal specifications from U.Cambridge, UK:
+    \begin{itemize}
+    \item Sail has also been used for a full formal spec for ARMv8
+      ISA, and for partial formal specs for Power, MIPs and x86.
+    \item Sail website: \url{https://github.com/rems-project/sail}.
+    \item Tutorial: ``High Level Sail Overview'', by Bill McSpadden, RISC-V Summit 2022.
+    \end{itemize}
+
+    \vspace{1ex}
+
+    The formal spec can be compiled into a simulator for RISC-V, which
+    can be used as a golden reference model.
+
+  \end{minipage}
+
+  \vfill
+
+  \begin{minipage}{9in}\LARGE
+    {\Large
+    $^*$ We believe ARMv8 also has a formal specification, but only available internally inside ARM.}
+  \end{minipage}
+
+
+\end{center}
+
+\clearpage
+
+% ================================================================
+% Golden reference models
+
+\begin{center}
+  {\Huge
+    Golden Reference Models of the RISC-V ISA}
+
+  \vspace*{0.5in}
+
+  \begin{minipage}{9in}\LARGE
+    Software simulators:
+    \begin{itemize}\Large
+
+    \item These are pure simulators of the ISA, and do not simulate
+      any micro-architectural details (pipelining, caches, MMUs, ...).
+      They can produce an instruction trace that can be compared with
+      the instruction trace from a hardware implementation.
+
+    \item SPIKE (The ``Golden Spike'') is the principal simulator reference model written in C++ \\
+      \url{https://github.com/riscv-software-src/riscv-isa-sim}\\
+
+    \item Other:
+      \begin{itemize}
+      \item Sail RISC-V formal spec, compiled to an executable.
+      \item In QEMU, TinyEMU, Imperas, ... (\emph{many})
+      \item Open-source formal spec written in Haskell:
+        \url{https://github.com/rsnikhil/Forvis_RISCV-ISA-Spec}
+      \end{itemize}
+    \end{itemize}
+
+    \vspace{2ex}
+
+    Hardware reference models:
+    \begin{itemize}\Large
+
+    \item These are synthesizable HW implementations of RISC-V written
+      for clarity (correctness), not performance, and can be run in HW
+      (typically in FPGAs or HW simulation), adjacent to a real HW
+      implementation, to compare ISA traces directly (``Tandem
+      Verification'').
+
+    \item Examples:
+      \begin{itemize}
+      \item RVBS, from U.Cambridge, UK: \url{https://github.com/CTSRD-CHERI/RVBS}
+      \item Magritte, from Bluespec, Inc.
+      \end{itemize}
+    \end{itemize}
+
+  \end{minipage}
+\end{center}
+
+\clearpage
+
+% ================================================================
+% TODO
+
+\begin{center}
+  {\Huge
+    Topics not covered (future?)}
+
+  \vspace*{1in}
+
+  \begin{minipage}{9in}\LARGE
+    \begin{itemize}
+    \item Verification under non-determinism ({\eg} with timer interrupts; multicore)
+    \item Tandem Verification
+    \item Verification of Weak Memory Model implementations
+    \item Formal Verification
     \end{itemize}
   \end{minipage}
 
