@@ -9,6 +9,7 @@ PNGs_FROM_SVGs = \
 	SW_Interruptor.png \
 	PLIC.png \
 	Debug_Module.png \
+	ISA_Test_Naming.png \
 
 
 default: $(PNGs_FROM_SVGs)

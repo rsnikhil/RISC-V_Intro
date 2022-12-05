@@ -122,41 +122,6 @@
 \clearpage
 
 % ================================================================
-% References
-
-\begin{center}\LARGE
-  {\Huge Primary References}
-
-  \vspace{0.5in}
-
-  \begin{minipage}{9in}
-    Unprivileged and Privileged ISAs:
-
-    \begin{itemize}
-    \item \emph{The RISC-V Instruction Set Manual; Volume I:
-    Unprivileged ISA, Document Version 20191213}, Andrew Waterman and
-      Krste Asanović (editors), December 13, 2019, 238 pp.
-
-    \item \emph{The RISC-V Instruction Set Manual; Volume II: Privileged Architecture,
-    Document Version 20211203}, Andrew Waterman, Krste Asanović1 and John Hauser (editors)
-      December 4, 2021, 155 pp.
-    \end{itemize}
-
-    \vspace{1in}
-
-    PDFs for all RISC-V specs can be found at: \\
-    \hmmmm \url{https://riscv.org/technical/specifications/}
-  \end{minipage}
-
-  \vfill
-
-  Note: ARM’s 64-bit architecture (ARM v8-A) spec is over 6000 pages long.
-
-\end{center}
-
-\clearpage
-
-% ================================================================
 % "RISC-V" is only an ISA
 
 \begin{figure}[htp]
@@ -188,10 +153,50 @@
         There can be a variety of implementations varying widely on
         these dimensions, from IoT microcontrollers to server-class
         cores to supercomputing cores.
-
       \end{itemize}
+
+      \vspace{0.5in}
+
+      \begin{center}
+        \emph{This Introduction is \emph{only} about the ISA, not any specific RISC-V implementation}
+      \end{center}
     \end{minipage}
 \end{figure}
+
+\clearpage
+
+% ================================================================
+% References
+
+\begin{center}\LARGE
+  {\Huge Primary References}
+
+  \vspace{0.5in}
+
+  \begin{minipage}{9in}
+    Unprivileged and Privileged ISAs:
+
+    \begin{itemize}
+    \item \emph{The RISC-V Instruction Set Manual; Volume I:
+    Unprivileged ISA, Document Version 20191213}, Andrew Waterman and
+      Krste Asanović (editors), December 13, 2019, 238 pp.
+
+    \item \emph{The RISC-V Instruction Set Manual; Volume II: Privileged Architecture,
+    Document Version 20211203}, Andrew Waterman, Krste Asanović1 and John Hauser (editors)
+      December 4, 2021, 155 pp.
+    \end{itemize}
+
+    \vspace{1in}
+
+    PDFs for all RISC-V specs can be found at: \\
+    \hmmmm \url{https://riscv.org/technical/specifications/}
+  \end{minipage}
+
+  \vfill
+
+  Note: ARM’s 64-bit architecture (ARM v8-A) spec is over 6000 pages long.
+
+\end{center}
 
 \clearpage
 
@@ -1169,16 +1174,26 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
 \begin{center}
   {\Huge
-    A Note about the RISC-V Software Ecosystem}
+    A Brief Note about the RISC-V Software Ecosystem}
 
   \vspace*{1in}
 
+  The following SW development tools have been available for many
+  years and are mature (upstreamed into standard distributions):
+
   \begin{minipage}{9in}\LARGE
     \begin{itemize}
-    \item Mature: GNU toolchain (gcc, gdb, ...)
-    \item Mature: Linux, FreeRTOS, seL4, ...
-    \item Hundreds/thousands of other porting efforts underway; ecosystem grows every day.
+    \item GNU toolchain (gcc, gdb, ...)
+    \item Linux, FreeRTOS, seL4, ...
     \end{itemize}
+
+    \vspace{1in}
+
+    Hundreds/thousands of other porting efforts are underway
+    (operating systems, programming language implementations,
+    applications, tools), in hundreds/thousands of companies and
+    universities worldwide; the ecosystem grows every day.
+
   \end{minipage}
 
 \end{center}
@@ -1314,11 +1329,65 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 \clearpage
 
 % ================================================================
-% TODO
+% Standard ISA Tests
 
 \begin{center}
   {\Huge
-    Topics not covered (future?)}
+    Standard ISA Tests}
+
+  \vspace*{0.2in}
+
+  \begin{minipage}{9in}\Large
+    \begin{itemize}
+    \item Reference: \url{https://github.com/riscv-software-src/riscv-tests}
+    \item These are a set of several hundred programs, written in RISC-V Assembly language.
+    \item Each program focuses on one particular opcode, and contains several test 1..N.
+      \begin{itemize}
+        \item Each test ends with a postlude that either signals
+          success, or failure with an indication of which of its N tests first failed.
+
+        \item The result signal is to store a value to a memory-mapped
+          {\tt tohost} location.  Different implementations implement
+          this in different ways.
+      \end{itemize}
+    \item The test programs are named according to the ISA modular structure. Examples:
+    \end{itemize}
+
+  \end{minipage}
+
+  \vspace {0.1in}
+
+  \fbox{\includegraphics[width=6in]{Figs/ISA_Test_Naming.png}}
+\end{center}
+
+\clearpage
+
+% ================================================================
+% END slide
+
+\begin{center}\Huge
+  \vspace*{2in}
+
+  \emph{End}
+
+  \vspace*{2in}
+  
+  \begin{minipage}{7in}\Large
+    \begin{center}
+      \emph{Please direct questions/comments/errata to the author.}
+    \end{center}
+  \end{minipage}
+
+\end{center}
+
+\clearpage
+
+% ================================================================
+% Extra: TODO
+
+\begin{center}
+  {\Huge
+    Possible topics to add to this introduction in future}
 
   \vspace*{1in}
 
