@@ -186,15 +186,19 @@
       December 4, 2021, 155 pp.
     \end{itemize}
 
-    \vspace{1in}
+    \vspace{0.5in}
 
     PDFs for all RISC-V specs can be found at: \\
     \hmmmm \url{https://riscv.org/technical/specifications/}
+
+    \vspace{1in}
+
+    Compare: ARM’s 64-bit architecture (ARM v8-A) spec is over 6000
+    pages long.  The RISC-V ISA has the advantage of being a
+    \emph{clean slate} design with a 3-4 decade advantage, with no
+    legacy bloat.
+
   \end{minipage}
-
-  \vfill
-
-  Note: ARM’s 64-bit architecture (ARM v8-A) spec is over 6000 pages long.
 
 \end{center}
 
@@ -227,10 +231,11 @@
             RISC-V by a team at Univ. of California, Berkeley.
           \end{itemize}
 
-        \item RISC-V seems well on its way to becoming one of the
-          three dominant ISAs (along with x86 and ARM).  Over time, it
-          may also displace the numerous lesser-known ISAs used for
-          microcontrollers.
+        \item Because it is \emph{open}, and already relatively
+          mature, RISC-V seems well on its way to becoming one of the
+          \emph{three dominant ISAs} (along with x86 and ARM).  Over
+          time, it may also displace the numerous lesser-known ISAs
+          used for microcontrollers.
 
       \end{itemize}
     \end{minipage}
@@ -1358,6 +1363,51 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
   \vspace {0.1in}
 
   \fbox{\includegraphics[width=6in]{Figs/ISA_Test_Naming.png}}
+\end{center}
+
+\clearpage
+
+% ================================================================
+% Other Tests
+
+\begin{center}
+  {\Huge
+    Other Verification Tests}
+
+  \vspace*{1in}
+
+  \begin{minipage}{9in}\Large
+    Google open source ``riscv-dv'' instruction stream generator
+
+    \begin{itemize}
+    \item Reference: \url{https://github.com/google/riscv-dv} \\
+    ``RISCV-DV is a SV/UVM based open-source instruction
+      generator for RISC-V processor verification.''
+
+    \item Typically run on reference golden model, and on DUT, and compare
+      instruction traces.
+    \end{itemize}
+
+    \vspace*{0.75in}
+
+    Beyond ISA tests, HW verification is often performed by comparing
+    behavior of reference golden model against HW implementation while
+    booting an OS, typically Linux.
+
+    \vspace*{0.75in}
+
+    \emph{Still Missing:} Test code whose execution time in simulation
+    is between ISA tests and Linux kernel, gradually adding virtual
+    memory, interrupts, and ``process-switching'':
+
+    \begin{itemize}
+    \item ISA tests' execution time: seconds (even in simulation).
+    \item Linux kernel execution time: Many hours/days in simuilation.
+    \end{itemize}
+    
+    Perhaps a microkernel may serve this purpose.
+
+  \end{minipage}
 \end{center}
 
 \clearpage
