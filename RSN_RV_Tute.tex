@@ -1,3 +1,5 @@
+% Intro to RISC-V ISA (Generic)
+
 \documentclass{article}
 
 \usepackage{graphicx}
@@ -166,7 +168,7 @@
 \clearpage
 
 % ================================================================
-% References
+% Primary References
 
 \begin{center}\LARGE
   {\Huge Primary References}
@@ -186,18 +188,51 @@
       December 4, 2021, 155 pp.
     \end{itemize}
 
-    \vspace{0.5in}
-
-    PDFs for all RISC-V specs can be found at: \\
-    \hmmmm \url{https://riscv.org/technical/specifications/}
-
     \vspace{1in}
 
-    Compare: ARM’s 64-bit architecture (ARM v8-A) spec is over 6000
-    pages long.  The RISC-V ISA has the advantage of being a
-    \emph{clean slate} design with a 3-4 decade advantage, with no
-    legacy bloat.
+    PDFs for all RISC-V specs can be found at:
 
+    \vspace{2ex}
+
+    \centering \url{https://riscv.org/technical/specifications/}
+
+  \end{minipage}
+
+\end{center}
+
+\clearpage
+
+% ================================================================
+% Cleanliness etc.
+
+\begin{center}\LARGE
+  {\Huge Clean-slate design}
+
+  \vspace{1in}
+
+  \begin{minipage}{9in}
+    \begin{itemize}
+
+    \item RISC-V was created circa. 2010, at University of California,
+      Berkeley, USA, by a team with 4-5 decades of experience in ISA
+      design and implementations.
+      \begin{itemize}
+        \item Four previous RISC designs (hence the ``V'' in
+          ``RISC-V''), including the parent design of the {\bf SPARC} ISA
+          (commercialized by Sun Microsystems, Oracle, Fujitsu, ...).
+      \end{itemize}
+    \end{itemize}
+  \end{minipage}
+
+  \vspace{1in}
+
+  \begin{minipage}{9in}
+    Result:
+    \begin{itemize}
+    \item \emph{Very} clean, orthogonal, simple design.
+    \item No legacy bloat ({\eg} branch-delay slots, ...)
+    \item Compare: ARM’s 64-bit architecture (ARM v8-A) spec is over 6000 pages long.
+    \end{itemize}
   \end{minipage}
 
 \end{center}
@@ -1211,7 +1246,7 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 \begin{center}\Huge
   \vspace*{2in}
 
-  \emph{Verification}
+  \emph{HW Verification of CPU and System Implementations}
 
   \vspace*{1in}
   
@@ -1396,16 +1431,17 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
     \vspace*{0.75in}
 
-    \emph{Still Missing:} Test code whose execution time in simulation
-    is between ISA tests and Linux kernel, gradually adding virtual
-    memory, interrupts, and ``process-switching'':
+    \emph{Would be useful:} Test code whose execution time in
+    simulation is between ISA tests (seconds) and Linux kernel (days),
+    gradually adding virtual memory, interrupts, and
+    process-switching:
 
     \begin{itemize}
     \item ISA tests' execution time: seconds (even in simulation).
     \item Linux kernel execution time: Many hours/days in simulation.
     \end{itemize}
     
-    Perhaps a microkernel may serve this purpose.
+    Perhaps a microkernel (seL4?) may serve this purpose.
 
   \end{minipage}
 \end{center}
