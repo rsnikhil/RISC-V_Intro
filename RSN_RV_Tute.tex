@@ -2,12 +2,18 @@
 
 \documentclass{article}
 
+\newcommand{\docversion}{v2022-12-08.1}
+
 \usepackage{graphicx}
 \usepackage{blindtext}
 \usepackage{fancyhdr}
 \usepackage{hyperref}
 
-\usepackage[letterpaper, landscape]{geometry}
+% Using "US legal" sized paper for roughly 16:10/16:9 ratio for slides
+% 16:10 = 1.6, 16/9 = 1.77
+% Legal size is 14"x8.5" = 1.64
+\usepackage[legalpaper, landscape]{geometry}
+% \usepackage[letterpaper, landscape]{geometry}
 
 \geometry{tmargin=0.7in}
 \geometry{bmargin=0.6in}
@@ -33,7 +39,7 @@
 \fancyhf{}
 
 \lhead{\it Intro to RISC-V ISA}
-\rhead{2022-12-08.1}
+\rhead{\docversion}
 
 \lfoot{\footnotesize R.S.Nikhil}
 \rfoot{\footnotesize Slide \thepage}
@@ -45,7 +51,7 @@
 % ================================================================
 % Title page
 
-\vspace*{1in}
+\vspace*{0.5in}
 
 \begin{center}\Huge
   \emph{Introduction to the RISC-V ISA}
@@ -53,16 +59,16 @@
   \vspace*{0.5in}
 
   Rishiyur S. Nikhil \\
-  December, 2022
+  {\docversion}
 
   \vspace*{1in}
 
-  \includegraphics{Figs/Bluespec_Logo_2022-10.jpg}
+  \includegraphics[scale=0.7]{Figs/Bluespec_Logo_2022-10.jpg}
 
   \vfill
 
-  \begin{minipage}{7in}\Large
-    These slides are available at: \url{https://github.com/rsnikhil/RISC-V_Intro}
+  \begin{minipage}{8in}\Large
+    These slides (with sources) are available at: \url{https://github.com/rsnikhil/RISC-V_Intro}
 
     \vspace{1ex}
 
@@ -102,7 +108,7 @@
       \begin{itemize}
       \item CSRs (Control and Status registers)
       \item Exceptions (traps and interrupts)
-      \item Virtual Memory in Supervisor privilege level
+      \item Virtual Memory in Supervisor and User privilege levels
       \end{itemize}
 
     \item Common artefacts attached to cores:
@@ -132,11 +138,11 @@
 
 \begin{figure}[htp]
     \centering
-    {\Huge ``RISC-V'', per se, is \emph{only} an ISA (Instruction Set Architecture)}
+    {\Huge The term \emph{RISC-V}, per se, is ``only'' an ISA (Instruction Set Architecture)}
 
     \vspace{0.5in}
 
-    \begin{minipage}{9in}\LARGE
+    \begin{minipage}{11in}\LARGE
       \begin{itemize}
       \item Only a specification, a document, describing:
         \begin{itemize}
@@ -145,7 +151,9 @@
         \item Semantics (meaning) of each instruction: how it
           accesses/changes architecturally visible state
         \end{itemize}
-        {\ie} it's the abstract view of the machine targeted by general-purpose compilers.
+        {\ie} it's the abstract view of the machine targeted by
+        general-purpose compilers, or the Assembly Languages
+        programmer's view
 
       \item Not an actual CPU, processor, chip, core, ...
 
@@ -215,16 +223,17 @@
   \vspace{1in}
 
   \begin{minipage}{9in}
-    \begin{itemize}
+    RISC-V was created circa. 2010, at University of California,
+    Berkeley, USA, by a team with 4-5 decades of experience in ISA
+    design and implementations (with colleagues who are experts in
+    operating systems, programming languages and compilers, and
+    software tools and ecosystems).
 
-    \item RISC-V was created circa. 2010, at University of California,
-      Berkeley, USA, by a team with 4-5 decades of experience in ISA
-      design and implementations.
-      \begin{itemize}
-        \item Four previous RISC designs (hence the ``V'' in
-          ``RISC-V''), including the parent design of the {\bf SPARC} ISA
-          (commercialized by Sun Microsystems, Oracle, Fujitsu, ...).
-      \end{itemize}
+    \begin{itemize}
+    \item U.C.Berkeley created four previous RISC designs starting in
+      the 1980s (hence the ``V'' in ``RISC-V''), including the parent
+      design of the {\bf SPARC} ISA (commercialized by Sun
+      Microsystems, Oracle, Fujitsu, ...).
     \end{itemize}
   \end{minipage}
 
@@ -246,45 +255,44 @@
 % ================================================================
 % RISC-V is an open ISA
 
-\begin{figure}[htp]
-    \centering
-    {\Huge RISC-V is an \emph{Open} ISA, unlike other ISAs}
+\begin{center}
+  {\Huge RISC-V is an \emph{Open} ISA, unlike other ISAs}
 
-    \vspace{0.5in}
+  \vspace{0.5in}
 
-    \begin{minipage}{9in}\LARGE
+  \begin{minipage}{9in}\LARGE
+    \begin{itemize}
+
+    \item There are many well-known, mature ISAs---x86, ARMv8,
+      Power, Sparc, ...---but they are all \emph{proprietary},
+      requiring licenses and fees if you want to implement them.
+
+    \item RISC-V does not require any license fee to
+      implement.$^1$
+
       \begin{itemize}
-
-        \item There are many well-known, mature ISAs---x86, ARMv8,
-          Power, Sparc, ...---but they are all \emph{proprietary},
-          requiring licenses and fees if you want to implement them.
-
-        \item RISC-V does not require any license fee to
-          implement.$^1$
-
-          \begin{itemize}
-          \item This is central to all the current commercial interest in RISC-V.
-          \item This is central to \emph{architecture researchers} who
-            wish to innovate on state-of-the-art implementations, and
-            indeed was the original motivation behind the creation of
-            RISC-V by a team at Univ. of California, Berkeley.
-          \end{itemize}
-
-        \item Because it is \emph{open}, and already relatively
-          mature, RISC-V seems well on its way to becoming one of the
-          \emph{three dominant ISAs} (along with x86 and ARM).  Over
-          time, it may also displace the numerous lesser-known ISAs
-          used for microcontrollers.
-
+      \item This is central to all the current commercial interest in RISC-V.
+      \item This is central to \emph{architecture researchers} who
+        wish to innovate on state-of-the-art implementations, and
+        indeed was the original motivation behind the creation of
+        RISC-V by a team at Univ. of California, Berkeley.
       \end{itemize}
-    \end{minipage}
-\end{figure}
+
+    \item Because it is \emph{open}, and already relatively
+      mature, RISC-V seems well on its way to becoming one of the
+      \emph{three dominant ISAs} (along with x86 and ARM).  Over
+      time, it may also displace the numerous lesser-known ISAs
+      used for microcontrollers.
+
+    \end{itemize}
+  \end{minipage}
 
 \vfill
 
 {$^1$ The name ``RISC-V'' is owned by RISC-V International, and you
   need their permission to use the name in commercial naming of
   products.}
+\end{center}
 
 \clearpage
 
@@ -301,18 +309,22 @@
 
 PDFs for all RISC-V specs can be found at: \url{https://riscv.org/technical/specifications/}
 
-\begin{itemize}\LARGE
+\vspace{0.5in}
 
-\item Many other standard extensions exist: vector, crypto, bit-manipulation, ...
+\begin{minipage}{11in}
+  \begin{itemize}\LARGE
 
-\item Implementors can choose according to target, from small
-  IoT/Embedded ({\eg} RV32IC ``bare-metal'') to server-class/HPC (e.g.,
-  RV64IMAFDC with vector, crypto, bit-manipulation and standard
-  Privileged ISA)
+  \item Many other standard extensions exist: vector, crypto, bit-manipulation, ...
 
-\item HW facilities allow SW to discover the configuration on which it is running.
+  \item Implementors can choose according to target, from small
+    IoT/Embedded ({\eg} RV32IC ``bare-metal'') to server-class/HPC ({\eg}
+    RV64IMAFDC with vector, crypto, bit-manipulation and standard
+    Privileged ISA).
 
-\end{itemize}
+  \item HW facilities allow SW to discover the configuration on which it is running.
+
+  \end{itemize}
+\end{minipage}
 
 \end{center}
 
@@ -329,26 +341,31 @@ PDFs for all RISC-V specs can be found at: \url{https://riscv.org/technical/spec
 
 PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specifications/}
 
-\begin{itemize}\LARGE
-\item All instructions are 32-bits wide, for both RV32 and RV64.
+\vspace{0.3in}
 
-\item  There are very few instruction formats (simplifies hardware-decoder in CPU pipelines).
-\end{itemize}
+\begin{minipage}{10in}
+  \begin{itemize}\LARGE
+  \item All instructions are 32-bits wide, for both RV32 and RV64.
 
-\vspace{0.5in}
+  \item  There are very few instruction formats (simplifies hardware-decoder in CPU pipelines):
+  \end{itemize}
 
-\fbox{\includegraphics[height=3.25in]{Figs/UNPRIV_riscv-spec-20191213_p130_Instr_Formats.png}}
+  \vspace{0.2in}
 
-\vspace{0.5in}
+  \hmmmm \fbox{\includegraphics[width=9in]{Figs/UNPRIV_riscv-spec-20191213_p130_Instr_Formats.png}}
 
-\begin{itemize}\LARGE
-\item In the optional ``C'' extension (``compressed''), instructions
-  are 16-bits wide, for small-footprint systems (IoT/Embedded/Edge).
+  \vspace{0.2in}
 
-\item Each 16-bit C instruction expands to a standard 32-bit RV32/64
-  instruction; so only needs hardware at the front-end of the CPU
-  pipeline (16-bit fetch and expansion).
-\end{itemize}
+  \begin{itemize}\LARGE
+  \item In the optional ``C'' extension (``compressed''), instructions
+    are 16-bits wide, for small-footprint systems (IoT/Embedded/Edge).
+    \begin{itemize}
+    \item Each 16-bit C instruction expands to a standard 32-bit RV32/64
+      instruction; so only needs hardware at the front-end of the CPU
+      pipeline (16-bit fetch and expansion).
+    \end{itemize}
+  \end{itemize}
+\end{minipage}
 
 \end{center}
 
@@ -374,21 +391,23 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
   \fbox{\includegraphics[width=4.5in]{Figs/UNPRIV_riscv-spec-20191213_p130_RV32I.png}}
 \end{minipage}
 \hm
-\begin{minipage}[t]{5in}
+\begin{minipage}[t]{6in}
   \hmm \\
   \begin{itemize}\large
 
   \item RV32I ISA (Unprivileged, 32 x 32-bit registers, integer only)
-    has a mere 40 instructions (left)
+    has a mere 40 instructions (left).
 
   \item RV64I ISA (32 x 64-bit registers) adds 15 more instructions
-    (below)
+    (below).
+
+    \hmm \fbox{\includegraphics[width=4.5in]{Figs/UNPRIV_riscv-spec-20191213_p131_RV64I.png}}
+
+    The ``W'' instructions operate on 32-bit data in 64-bit registers.
 
   \end{itemize}
 
   \vspace{0.1in}
-
-  \fbox{\includegraphics[width=4.5in]{Figs/UNPRIV_riscv-spec-20191213_p131_RV64I.png}}
 
   \begin{itemize}\large
 
@@ -399,13 +418,13 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
   \item All I/O is via memory-mapped registers; no separate instructions.
 
-  \item ECALL: ``call-out'' to Privileged ISA.  Details are part of
-    Privileged Spec.
+  \item ECALL: (Environment Call) ``call-out'' to Privileged ISA.
+    Details are part of Privileged Spec.
 
   \item EBREAK: ``call-out'' to debugging environment (unspecified).
 
   \end{itemize}
-  {\large \emph{Possibly the cleanest, most orthogonal, industrial-strength ISA ever.}}
+  {\Large \emph{Possibly the cleanest, most orthogonal, industrial-strength ISA ever.}}
 \end{minipage}
 
 \end{center}
@@ -419,22 +438,22 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
   {\Huge
     ``M'' extension: Integer Multiply and Divide instructions}
 
-  \vspace*{0.5in}
+  \vspace*{0.2in}
 
-  \fbox{\includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p131_M.png}}
+  \begin{minipage}{9in}\Large
+    \hmmmm \fbox{\includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p131_M.png}}
 
-  \vspace{0.2in}
+    \vspace{0.2in}
 
-  \begin{minipage}{7in}\large
     \begin{itemize}
 
-      \item S: signed; U: Unsigned:
-        enables signed and unsigned multiplications.
+    \item S: signed; U: Unsigned: enables signed and unsigned multiplications.
 
-      \item H: upper half of double-width data: enables 64-bit
-        multiplications on RV32, 128-bit multiplications on RV64.
+    \item H: upper half of double-width data: enables 64-bit
+      multiplication-results on RV32, 128-bit multiplication-results
+      on RV64.
 
-      \item W: enables 32-bit multiplications on RV64.
+    \item The ``W'' instructions operate on 32-bit data in 64-bit registers.
 
     \end{itemize}
   \end{minipage}
@@ -451,11 +470,11 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
   \vspace{0.2in}
 
-  \fbox{\includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p132_A.png}}
+  \begin{minipage}[t]{9in}
+    \hmmmm \fbox{\includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p132_A.png}}
 
-  \vspace{0.2in}
+    \vspace{0.2in}
 
-  \begin{minipage}[t]{6in}
     \begin{itemize}\Large
     \item LR/SC: ``Load Reserved/Store Conditional'' on a memory location
     \item AMOxxx: atomic read-modify-writes on a memory location
@@ -504,25 +523,32 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
 \vspace*{0.1in}
 
-{\LARGE State: 32 x 32-bit floating-point registers, plus these CSRs (Control/Status Regs)}
-
 \begin{center}
-  \fbox{\includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p136_CSRs_FD.png}}
-\end{center}
+  \begin{minipage}{9.5in}
 
-\vspace*{0.1in}
+  {\Large State: 32 x 32-bit floating-point registers, plus these CSRs
+    (Control/Status Regs) holding standard IEEE flags:}
 
-{\LARGE Instructions:}
+  \begin{center}
+    \includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p136_CSRs_FD.png}
+  \end{center}
 
-\begin{center}
-  \fbox{\includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p133_RV32F.png}}
+  \vspace*{0.1in}
 
-  \vspace*{1ex}
+  {\Large Instructions:}
 
-  {\Large (... more ... please consult spec)}
-  \vspace*{0.2in}
+  \begin{center}
+    \includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p133_RV32F.png}
 
-  \fbox{\includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p133_RV64F.png}}
+    \vspace*{1ex}
+
+    {\large\bf (... more ... please consult spec)}
+
+    \vspace*{0.2in}
+
+    \includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p133_RV64F.png}
+  \end{center}
+  \end{minipage}
 \end{center}
 
 \clearpage
@@ -537,26 +563,32 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
 \vspace*{0.1in}
 
-{\LARGE 32 x 64-bit floating-point registers, plus these CSRs (Control/Status Regs)}
-
 \begin{center}
-  \fbox{\includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p136_CSRs_FD.png}}
-\end{center}
+  \begin{minipage}{9.5in}
 
-\vspace*{0.1in}
+    {\Large State: 32 x 64-bit floating-point registers, plus these CSRs
+      (Control/Status Regs) holding standard IEEE flags:}
 
-{\LARGE Instructions:}
+    \begin{center}
+      \includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p136_CSRs_FD.png}
+    \end{center}
 
-\begin{center}
-  \fbox{\includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p134_RV32D.png}}
+    \vspace*{0.1in}
 
-  \vspace*{1ex}
+    {\Large Instructions:}
 
-  {\Large (... more ... please consult spec)}
+    \begin{center}
+      \includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p134_RV32D.png}
 
-  \vspace*{0.2in}
+      \vspace*{1ex}
 
-  \fbox{\includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p134_RV64D.png}}
+      {\large\bf (... more ... please consult spec)}
+
+      \vspace*{0.2in}
+
+      \includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p134_RV64D.png}
+    \end{center}
+  \end{minipage}
 \end{center}
 
 \clearpage
@@ -570,12 +602,12 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
   \vspace*{0.2in}
 
-  \fbox{\includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p112_RVC_Q0.png}}
+  \includegraphics[width=7in]{Figs/UNPRIV_riscv-spec-20191213_p112_RVC_Q0.png}
                                     
 
   \vspace*{0.1in}
 
-  {\Large (... more ... please consult spec)}
+  {\large\bf (... more ... please consult spec)}
 
   \vspace*{0.3in}
 
@@ -605,14 +637,14 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
   {\Huge
     Notes on Memory and I/O}
 
-  \vspace*{0.5in}
+  \vspace{1in}
 
-  \begin{minipage}{9in}\LARGE
+  \begin{minipage}{10in}\LARGE
     \begin{itemize}
 
     \item Pure ``Load-Store'' ISA (with register base-address +
       index), {\ie} total separation of memory instructions
-      vs. non-memory instructions.
+      vs. non-memory instructions (computation, system, ...).
 
     \item Flat memory space (address-width depends on RV32 or RV64, and Virtual Memory Scheme).
 
@@ -621,18 +653,65 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
     \item Optional PMP CSRs (Physical Memory Protection) can impose
       base-and-bounds regions on memory with access permissions.  This
       provides lightweight sandboxing without the overheads of full
-      Virtual Memory (MMUs, page tables, address translation, ...).
+      Virtual Memory (TLBs/MMUs, page tables, address translation, ...).
 
     \item FENCE, FENCE.I, and SFENCE.VMA instructions for
       implementations that need to synchronize multicores, I-Caches
-      and D-Caches, and MMUs with Caches.
-
-    \item For multicores, RISC-V has an ARM-like ``Weak Memory
-      Model'', enabling more re-ordering of memory traffic for higher
-      performance.  Also has a a TSO option, which is a stricter
-      memory model (like x86).
+      and D-Caches, and TLBs/MMUs with Caches.
 
     \end{itemize}
+  \end{minipage}
+\end{center}
+
+\clearpage
+
+% ================================================================
+% Weak Memory Models
+
+\begin{center}
+  {\Huge
+    ``Weak Memory Models'' for concurrent access (in multithreading, multicore)}
+
+  \vspace*{0.5in}
+
+  \begin{minipage}{10in}\Large
+
+    In multithreaded implementations, when multiple harts perform
+    concurrent memory operations (fetches, loads, stores, AMOops), the
+    order in which results are returned to each hart can depend on
+    micro-architecural performance features such as reordering,
+    caches, cache-line size, store-buffers, {\etc}.  Without a formal
+    weak memory model, this can be chaotic and it becomes
+    impossible/very hard to write reliable multithreaded software.
+
+    \vspace{0.3in}
+
+    An ISA's \emph{weak memory model} defines what are legal outcomes
+    for concurrent accesses, across all implementations.  Every major
+    ISA also has a defined weak memory model.
+      
+    \vspace{0.3in}
+
+    In the RISC-V ISA:
+
+    \begin{itemize}
+    \item RISC-V Weak Memory Model (similar to ARMv8).
+
+    \item Optional TSO (Total Store Order) memory model (like x86, Sparc).
+    \end{itemize}
+
+    \vspace{0.3in}
+
+    TSO is a stronger memory model, and much legacy code is written
+    assuming this model (originating on x86, Sparc).
+
+    \vspace{0.3in}
+
+    Code written for TSO can run on a RISC-V implementation that only
+    implements the Weak Memory Model, by inserting suitable ``fence''
+    instructions and ordering directives into the code.  In many
+    cases, this can involve just recompiling libraries for concurrent
+    data structures.
   \end{minipage}
 \end{center}
 
@@ -692,7 +771,7 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
     \vspace{0.5in}
 
     Implementations do not have to implement all privilege levels
-    (implementation cost tradeoff):
+    (implementation cost tradeoff).  Standard combinations:
 
     \begin{center}
       \begin{tabular}{|c|c|}
@@ -724,36 +803,34 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
     \begin{itemize}
 
       \item CSRs: additional set of registers in the CPU, identified
-        by 12-bit CSR number.
-
-      \item Up to 4096 possible CSRs, but most are optional; only a
-        small handful are essential in an implementation.
+        by 12-bit CSR number.  Thus, up to 4096 possible CSRs, but
+        most are optional; only a small handful are essential in an
+        implementation.
 
       \item CSRs can be accessed programmatically with the CSR
         instructions shown below, each of which atomically swaps the
         contents of a CSR with standard integer registers, with some
         variations and nuances.
 
-      \item CSR instructions can be used at all privilege levels, but
-        the upper 4 bits of a CSR's number specifies which privilege
+        \hmmmm \fbox{\includegraphics[width=6in]{Figs/CSR_instrs.png}}
+
+        \hm
+
+        \hmmmm \includegraphics[width=6in]{Figs/CSRRW.png}
+
+        \hm
+
+      \item The upper 4 bits of a CSR's number specifies which privilege
         levels can access that particular CSR, and with which
         ops (read, read/write).
 
-      \item Some CSRs are ``shadows'' of other CSRs: only some bits
-        visible, or read-only vs. read-write ({\eg} {\tt cycle} is a
-        shadow of {\tt mcycle}).
+      \item Some CSRs are ``shadows'' of other CSRs: when viewed at
+        lower privilege levels, only some bits may be visible, or may
+        be read-only vs. read-write, {\etc}.
+
+        Example: {\tt cycle} (User privilege) is a read-only shadow of
+        {\tt mcycle} (Machine privilege).
     \end{itemize}
-
-    \hm
-
-    \begin{center}
-      \fbox{\includegraphics[width=7in]{Figs/CSR_instrs.png}}
-
-      \hm
-
-      \includegraphics[width=7in]{Figs/CSRRW.png}
-    \end{center}
-
   \end{minipage}
 \end{center}
 
@@ -824,9 +901,7 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
     \begin{center}
       \includegraphics[width=7in]{Figs/CSRs_Machine_Level.png}
 
-      \vspace*{0.1in}
-
-      {\Large (... more ... please consult spec)}
+      {\large\bf (... more ... please consult spec)}
     \end{center}
 
     \begin{itemize}
@@ -849,24 +924,35 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
   \vspace*{0.2in}
 
-  \begin{minipage}{9.5in}\Large
-    \begin{center}
-      \includegraphics[width=7in]{Figs/Exception_Handling.png}
-    \end{center}
+  \fbox{\includegraphics[width=7in]{Figs/Exception_Handling.png}}
+
+  \vspace*{0.2in}
+
+  \begin{minipage}{10.5in}\Large
 
     \begin{itemize}
-    \item {\tt mtvec} has been pre-loaded before this scenario (by boot-loader, OS, ...)
+    \item {\tt mtvec} (exception handler address) has been pre-loaded
+      before this scenario (by boot-loader, OS, ...)
 
-    \item Saved PC1/+2/+4 depends on whether the instruction needs to
-      be retried, and if it is a compressed instruction.
+    \item {\tt mepc} may be updated by the trap handler to PC3 $=$
+      PC1+0, PC1+2, PC1+4, or something else entirely, depending on
+      whether the trapping instruction needs to be retried or skipped,
+      whether it is a compressed instruction (+2) or not (+4), and
+      whether we're resuming the trapping code or switching to an
+      entirely different thread ({\eg} OS thread-switching after
+      time-slice).
 
-    \item Exception handler can change {\tt mtvec} to some other PC3,
-      {\eg} to resume a different thread after the exception.
+    \item ``Arguments'' and ``results'' are passed in registers,
+      according to a calling convention/ABI (Application Binary
+      Interface).
 
-    \item Any other ``arguments'' and ``results'' are passed in
-      registers, according to an ABI/calling convention.
+    \item Can be nested, {\ie} exception handler may itself encounter trap/interrupt.
 
-    \item Can be recursive, {\ie} exception handler may itself encounter trap/interrupt.
+    \item Exceptions can be delivered at Machine and Supervisor privilege levels.
+
+    \item The ISA defines mechanisms to automatically \emph{delegate}
+      exception-handling to a lower privilege level (Supervisor, User);
+      see {\tt medeleg} and {\tt mideleg} CSRs.
     \end{itemize}
   \end{minipage}
 
@@ -905,12 +991,6 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
     \item There is also an {\tt sstatus} CSR at Supervisor level,
       which is similar to, but only a subset of {\tt mstatus}.
-
-    \item Exceptions can be delivered at Machine-level and Supervisor-level privileges.
-
-    \item Exceptions delivered at Machine-level/Supervisor-level can
-      be \emph{delegated} to Supervisor-level/User-level (see {\tt
-        medeleg} and {\tt mideleg} CSRs).
     \end{itemize}
   \end{minipage}
 
@@ -924,30 +1004,30 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 \begin{center}
   {\Huge
     CSR MCause}
+
+  \vspace*{0.2in}
+
+  \begin{minipage}[t]{4in}
+    \hmm
+
+    \includegraphics[width=4in]{Figs/CSR_MCause.png}
+  \end{minipage}
+  \hm
+  \begin{minipage}[t]{5in}
+    \hmm
+
+    \vspace{1in}
+
+    \begin{itemize}\Large
+    \item On any exception, the cause is recorded in CSR {\tt mcause}
+      during the transfer of control to the exception handler.
+
+    \item Exception-handler code uses {\tt mcause} to discover what kind
+      of event caused this exception, using which it can branch to
+      event-type-specific handlers.
+    \end{itemize}
+  \end{minipage}
 \end{center}
-
-\vspace*{0.2in}
-
-\hmmmm
-\begin{minipage}[t]{4in}
-  \hmm \\
-  \includegraphics[width=4in]{Figs/CSR_MCause.png}
-\end{minipage}
-\hm
-\begin{minipage}[t]{4.5in}
-  \hmm
-
-  \vspace{1in}
-
-  \begin{itemize}\Large
-  \item On any exception, the cause is recorded in CSR {\tt mcause}
-    during the transfer of control to the exception handler.
-
-  \item Exception-handler code uses {\tt mcause} to discover what kind
-    of event caused this exception, using which it can branch to
-    event-type-specific handlers.
-  \end{itemize}
-\end{minipage}
 
 \clearpage
 
@@ -962,12 +1042,12 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
   \includegraphics[width=6in]{Figs/CSRs_MIP_MIE.png}
 
-  \vspace*{0.2in}
+  \vspace*{0.3in}
 
   \begin{minipage}[t]{9.5in}
     \begin{itemize}\LARGE
 
-    \item Interrupts arrive at a RISC-C hart only via the {\tt mip} CSR.
+    \item Interrupts arrive at a RISC-V hart only via the {\tt mip} CSR.
 
     \item Both are full-width registers (32b in RV32, 64b in RV64) but
       only the bottom 16 bits have standard definitions.
@@ -994,38 +1074,89 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
 \clearpage
 
-% ================================================================
-% Sv39 Page Table
+% ===================================================================
+% Virtual Memory
 
 \begin{center}
   {\Huge
-    Virtual Memory Page Table for Sv39 using CSR {\tt satp}}
+    Virtual Memory}
 
-  \vspace*{0.1in}
+  \vspace*{1in}
 
-  \includegraphics[width=9in]{Figs/VM_Sv39.png}
+  \begin{minipage}[t]{10in}
+    \begin{itemize}\LARGE
+ 
+    \item Virtual Memory (VM) is available in Supervisor and User privilege
+      levels. \\
+      Most Linux OS code runs at Supervisor level.
+
+    \item VM is optional; an implementation can have Supervisor and
+      User levels without implementing VM.
+
+    \item The Privileged ISA spec defines several possible virtual memory schemes:
+      \begin{itemize}
+        \item For RV32: \emph{Sv32}
+        \item For RV64: \emph{Sv39}, \emph{Sv48} and \emph{Sv57}
+      \end{itemize}
+
+      {\large
+      (XX in SvXX indicates the width of virtual addresses.)
+
+      \emph{Next two slides illustrate Sv32 and Sv39,
+      respectively, the two most common variants.}}
+
+    \item Implementations can choose \emph{how} to implement VM, in
+      particular VA$\rightarrow$PA translation:
+
+      \begin{itemize}
+      \item in hardware or firmware or trap-handlers;
+      \item whether to use accelerators like TLBs (Translation Look-aside Buffers),
+      \item {\etc}
+        \vspace{2ex}
+
+      \item The SFENCE.VMA instruction is available to synchronize updates to
+        address-translation hardware.
+      \end{itemize}
+
+    \end{itemize}
+  \end{minipage}
+\end{center}
+
+\clearpage
+
+% ================================================================
+% Sv32 Page Table
+
+\begin{center}
+  {\Huge
+    Virtual Memory Page Table for RV32/Sv32 using CSR {\tt satp}}
 
   \vspace*{0.2in}
 
-  \begin{minipage}[t]{9.5in}
-    \begin{itemize}\large
+  \fbox{\includegraphics[width=7in]{Figs/VM_Sv32.png}}
+
+  \vspace*{0.3in}
+
+  \begin{minipage}[t]{11in}\Large
+    \begin{itemize}
 
     \item When running in VM mode (indicated by {\tt mstatus} bits,
       privilege level, {\etc}), the PC, and addresses in LD/ST
       instructions are VAs (Virtual Addresses).
 
-    \item CSR {\tt satp} contains a pointer to a 3-level tree.  Each
+    \item CSR {\tt satp} contains a pointer to a 2-level tree.  Each
       node in the tree is a \emph{PTN} (Page Table Node), an aligned
-      4KiB block containing 512 \emph{PTEs} (Page Table Entries, each
-      64b).  Bits in the PTE indicate whether it is invalid, a leaf
-      (pointing to a data page), or a pointer to the next-level node.
+      4KiB block containing 1024 \emph{PTEs} (Page Table Entries, each
+      32b).  Bits in each PTE indicate whether it is valid/invalid, a
+      leaf (pointing to a data page), or a pointer to the next-level
+      PTN.
 
-    \item Leaves at level 2 point at 1GiB naturally aligned ``gigapages'';
-      leaves at level 1 point at 2MiB naturally aligned ``megapages'';
+    \item Leaves at level 1 point at 2MiB naturally aligned ``megapages'';
       leaves at level 0 point at 4KiB naturally aligned ``pages'';
 
-    \item Sv39 addresses have 39 bits. 9-bit fields are used to index
-      a PTE in a PTN, and the 12 LSBs to index a byte in a page.
+    \item Sv32 addresses have 32 bits. 10-bit fields are used to index
+      a PTE in a PTN, and the 12 LSBs are used to index a byte in a
+      4KiB page.
 
       \item If a VA$\rightarrow$PA translation fails (encounter
         invalid PTE, protection failure, ...) it raises a \emph{page
@@ -1037,32 +1168,61 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
 \clearpage
 
-% ===================================================================
-% Sv39 Page Table: details
+% ================================================================
+% Sv39 Page Table
 
 \begin{center}
   {\Huge
-    Standard Virtual Memory Schemes}
+    Virtual Memory Page Table for RV64/Sv39 using CSR {\tt satp}}
 
-  \vspace*{1in}
+  \vspace*{0.1in}
 
-  \begin{minipage}[t]{9in}
-    \begin{itemize}\Large
- 
-    \item The Privileged ISA for RV32 defines one standard Virtual Memory scheme: Sv32.
+  \fbox{\includegraphics[width=9in]{Figs/VM_Sv39.png}}
 
-    \item The Privileged ISA for RV64 defines three standard Virtual
-      Memory scheme: Sv39, Sv48 and Sv57.
+  \vspace*{0.2in}
 
-    \item It is a choice for an implementation as to \emph{how}
-      VA$\rightarrow$PA translation is implemented: in hardware or
-      firmware or trap-handlers, whether it uses accelerators like
-      TLBs (Translation Look-aside Buffers) {\etc} The SFENCE.VMA
-      instruction is available to synchronize updates to
-      address-translation hardware.
+  \begin{minipage}[t]{11in}\large
+    \begin{itemize}
 
+    \item When running in VM mode (indicated by {\tt mstatus} bits,
+      privilege level, {\etc}), the PC, and addresses in LD/ST
+      instructions are VAs (Virtual Addresses).
+
+    \item CSR {\tt satp} contains a pointer to a 3-level tree.  Each
+      node in the tree is a \emph{PTN} (Page Table Node), an aligned
+      4KiB block containing 512 \emph{PTEs} (Page Table Entries, each
+      64b).  Bits in each PTE indicate whether it is valid/invalid, a
+      leaf (pointing to a data page), or a pointer to the next-level
+      PTN.
+
+    \item Leaves at level 2 point at 1GiB naturally aligned ``gigapages'';
+      leaves at level 1 point at 2MiB naturally aligned ``megapages'';
+      leaves at level 0 point at 4KiB naturally aligned ``pages'';
+
+    \item Sv39 addresses have 39 bits (bits above this are
+      unused). 9-bit fields are used to index a PTE in a PTN, and the
+      12 LSBs are used to index a byte in a 4KiB page.
+
+      \item If a VA$\rightarrow$PA translation fails (encounter
+        invalid PTE, protection failure, ...) it raises a \emph{page
+        fault} exception or an \emph{access fault} exception, which is
+        handled in the usual way (see ``Exceptions'' slide earlier).
     \end{itemize}
   \end{minipage}
+\end{center}
+
+\clearpage
+
+% ================================================================
+% Transition to Adjunct System Components
+
+\vspace*{3in}
+
+\begin{center}\Huge
+  \emph{Common System Components adjunct to RISC-V cores}
+
+\vfill
+
 \end{center}
 
 \clearpage
@@ -1072,7 +1232,7 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
 \begin{center}
   {\Huge
-    Common System Components accompanying RISC-V Cores}
+    Common System Components adjunct to RISC-V Cores}
 
   \vspace*{1in}
 
@@ -1101,9 +1261,9 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
   \begin{minipage}[t]{9in}
     \begin{itemize}\LARGE
-    \item For SW to measure real-time, and for real-time timer interupts
-    \item Contains two memory-mapped registers, MTIME and MTIMECMP
-    \item MTIME ticks upwards constantly.
+    \item For SW to measure real-time, and for real-time timer interrupts.
+    \item Contains two memory-mapped registers, MTIME and MTIMECMP.
+    \item MTIME ticks upwards constantly (can also be written by CPU to initialize).
     \item Timer Interrupts: typical usage:
       \begin{itemize}
       \item CPU reads MTIME (let's call it $t$)
@@ -1141,6 +1301,14 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
       \item MSIP [$J$] is connected to the CSR MIP at the MSIP bit position (in core $J$).
       \end{itemize}
     \end{itemize}
+
+    \vspace{0.3in}
+
+    \begin{center}
+    {\large In some systems MTIME, MTIMECMP, MSIP are in a common
+      component called the \emph{CLINT} (Core-Local Interruptor).}
+    \end{center}
+
   \end{minipage}
 \end{center}
 
@@ -1171,7 +1339,8 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
       configure connectivity, priority, arbitration, interrupt masks, {\etc}
 
     \item A device interrupt can connect to multiple cores; PLIC has
-      facilities for a core to ``claim'' an interrupt atomically.
+      facilities for competing core to ``claim'' an interrupt
+      atomically.
     \end{itemize}
   \end{minipage}
 \end{center}
@@ -1185,14 +1354,14 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
   {\Huge
     Debug Module: Common System Component accompanying RISC-V Cores}
 
-  \vspace*{0.5in}
+  \vspace*{0.2in}
 
   \fbox{\includegraphics[width=4in]{Figs/Debug_Module.png}}
 
-  \vspace*{0.5in}
+  \vspace*{0.3in}
 
   \begin{minipage}[t]{9in}
-    \begin{itemize}\LARGE
+    \begin{itemize}\Large
 
     \item A RISC-V Debug Module is a HW module closely connected to
       multiple harts.  Can control them individually and collectively.
@@ -1201,13 +1370,21 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
       read/write memory, stop/start/continue/single-step, set
       breakpoints, set watchpoints, ...
 
-    \item Is controlled through a standard Debug Module Interface
-      (DMI).
+    \item Is controlled through a standard memory-like Debug Module
+      Interface (DMI).
 
-    \item Open-source code exists to JTAG-encode the DMI interface.
+    \item DMI can be connected to JTAG (open-source RTL available).
 
-    \item Can connect from standard OpenOCD (Open On Chip Debugger) and GDB.
+    \item JTAG can connect to standard, open-source OpenOCD (Open On-Chip Debugger).
+
+    \item DMI or OpenOCD can connect to standard GDB.
     \end{itemize}
+
+    \vspace{1ex}
+
+    {\Large With the Debug Module, a hardware RISC-V core can be
+      controlled precisely from GDB and/or OpenOCD, starting at the
+      very first instruction out of reset.}
   \end{minipage}
 \end{center}
 
@@ -1413,9 +1590,9 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
   {\Huge
     Other Verification Tests}
 
-  \vspace*{1in}
+  \vspace*{0.5in}
 
-  \begin{minipage}{9in}\Large
+  \begin{minipage}{9in}\LARGE
     Google open source ``riscv-dv'' instruction stream generator
 
     \begin{itemize}
@@ -1427,13 +1604,13 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
       instruction traces.
     \end{itemize}
 
-    \vspace*{0.75in}
+    \vspace*{0.5in}
 
     Beyond ISA tests, HW verification is often performed by comparing
     behavior of reference golden model against HW implementation while
     booting an OS, typically Linux.
 
-    \vspace*{0.75in}
+    \vspace*{0.5in}
 
     \emph{Would be useful:} Test code whose execution time in
     simulation is between ISA tests (seconds) and Linux kernel (days),
@@ -1477,7 +1654,7 @@ PDFs for RISC-V specs can be found at: \url{https://riscv.org/technical/specific
 
 \begin{center}
   {\Huge
-    Possible topics to add to this introduction in future}
+    Possible topics to add in future}
 
   \vspace*{1in}
 

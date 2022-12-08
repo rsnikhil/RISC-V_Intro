@@ -26,7 +26,7 @@
      units="in"
      inkscape:zoom="1.3314394"
      inkscape:cx="528"
-     inkscape:cy="408.20484"
+     inkscape:cy="408.20483"
      inkscape:window-width="2245"
      inkscape:window-height="1542"
      inkscape:window-x="739"
@@ -236,26 +236,26 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-       x="159.12732"
-       y="122.30178"
+       x="166.00639"
+       y="123.88929"
        id="text91163"><tspan
          sodipodi:role="line"
          style="font-size:5.64444px;stroke-width:0.264583"
-         x="159.12732"
-         y="122.30178"
-         id="tspan91161">Alternative non-standard</tspan><tspan
+         x="166.00639"
+         y="123.88929"
+         id="tspan91161">Alternative (non-standard)</tspan><tspan
          sodipodi:role="line"
          style="font-size:5.64444px;stroke-width:0.264583"
-         x="159.12732"
-         y="129.35733"
+         x="166.00639"
+         y="130.94484"
          id="tspan98287">Privileged ISAs</tspan></text>
     <rect
        style="fill:#ffeeaa;stroke:#800000;stroke-width:0.264999;stroke-linecap:round"
        id="rect104897"
        width="22.38195"
        height="39.830753"
-       x="158.68741"
-       y="133.15517"
+       x="165.56648"
+       y="134.74265"
        rx="5.5563331"
        ry="4.7119708" />
     <rect
@@ -263,8 +263,8 @@
        id="rect104899"
        width="10.48448"
        height="27.939409"
-       x="190.422"
-       y="138.63187"
+       x="197.30107"
+       y="140.21935"
        rx="3.3051083"
        ry="2.7313697" />
     <rect
@@ -272,8 +272,8 @@
        id="rect104901"
        width="17.570971"
        height="46.504669"
-       x="209.95752"
-       y="151.63963"
+       x="216.83659"
+       y="153.22711"
        rx="5.5563335"
        ry="4.7119708" />
     <path
@@ -308,15 +308,20 @@
          id="tspan56453">    a few more instructions</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-       x="90.200607"
-       y="102.40197"
+       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="105.88545"
+       y="99.226982"
        id="text36469"><tspan
          sodipodi:role="line"
-         style="font-size:5.64444px;stroke-width:0.264583"
-         x="90.200607"
-         y="102.40197"
-         id="tspan36467">ECALL instruction</tspan></text>
+         style="font-size:5.64444px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="105.88545"
+         y="99.226982"
+         id="tspan36467">ECALL instruction</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="105.88545"
+         y="106.28253"
+         id="tspan1731">(for system calls, e.g.)</tspan></text>
     <rect
        style="fill:#ffeeaa;stroke:#800000;stroke-width:0.264999;stroke-linecap:round"
        id="rect889"
