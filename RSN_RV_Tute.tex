@@ -2,7 +2,7 @@
 
 \documentclass{article}
 
-\newcommand{\docversion}{v2022-12-08.1}
+\newcommand{\docversion}{v2022-12-14.1}
 
 \usepackage{graphicx}
 \usepackage{blindtext}
@@ -280,9 +280,14 @@
 
     \item Because it is \emph{open}, and already relatively
       mature, RISC-V seems well on its way to becoming one of the
-      \emph{three dominant ISAs} (along with x86 and ARM).  Over
-      time, it may also displace the numerous lesser-known ISAs
-      used for microcontrollers.
+      \emph{three dominant ISAs} (along with x86 and ARM).
+      \begin{itemize}
+      \item It has already displaced ARM in many situations.
+      \item As high-performance versions of RISC-V become available,
+        it will likely display x86 as well in many situations.
+      \item It is already displacing numerous lesser-known ISAs used
+        for microcontrollers and in embedded systems.
+      \end{itemize}
 
     \end{itemize}
   \end{minipage}
@@ -324,6 +329,48 @@ PDFs for all RISC-V specs can be found at: \url{https://riscv.org/technical/spec
   \item HW facilities allow SW to discover the configuration on which it is running.
 
   \end{itemize}
+\end{minipage}
+
+\end{center}
+
+\clearpage
+
+% ================================================================
+% Top Five Fallacies About RISC-V
+
+\begin{center}
+  {\Huge Top Five Fallacies About RISC-V and its Potential for Growth/Dominance}
+
+  \vspace{1in}
+
+  \begin{minipage}{9in}\LARGE
+    Prof. David Patterson (University of California, Berkeley), one of
+    the co-creators of the RISC-V ISA, identifies the following major
+    fallacies in considering the outlook/future for RISC-V:
+
+    \vspace{0.5in}
+
+    \begin{enumerate}\Large
+
+    \item RISC-V is an open-source processor, like Linux is an open-source operating system.
+
+    \item Picking an established, closed ISA is a safer business decision than picking the open RISC-V.
+
+    \item Closed ISAs do not have fragmented software ecosystems.
+
+    \item RISC-V’s modularity leads to a more fragmented software ecosystem than those of closed ISAs.
+
+    \item Given the points above, RISC-V cannot become the dominant ISA.
+
+    \end{enumerate}
+
+    \vspace{0.5in}
+
+    Intrigued? See his responses at:
+
+    \begin{center}
+      \url{https://www.eetimes.com/examining-the-top-five-fallacies-about-risc-v}
+    \end{center}
 \end{minipage}
 
 \end{center}

@@ -27,10 +27,10 @@
      inkscape:zoom="1.3314394"
      inkscape:cx="528"
      inkscape:cy="408.20483"
-     inkscape:window-width="2245"
-     inkscape:window-height="1542"
-     inkscape:window-x="739"
-     inkscape:window-y="560"
+     inkscape:window-width="2691"
+     inkscape:window-height="1710"
+     inkscape:window-x="192"
+     inkscape:window-y="158"
      inkscape:window-maximized="0"
      inkscape:current-layer="layer1"
      objecttolerance="1"
@@ -169,12 +169,12 @@
          style="font-size:5.64444px;stroke-width:0.264583"
          x="33.391003"
          y="196.42409"
-         id="tspan59652">    {M,S,U}RET for returns from</tspan><tspan
+         id="tspan59652">    {M,S,U}RET for returns</tspan><tspan
          sodipodi:role="line"
          style="font-size:5.64444px;stroke-width:0.264583"
          x="33.391003"
          y="203.47963"
-         id="tspan131766">     system calls</tspan></text>
+         id="tspan131766">     from system calls</tspan></text>
     <rect
        style="fill:#ffeeaa;stroke:#800000;stroke-width:0.264999;stroke-linecap:round"
        id="rect66141"
@@ -243,19 +243,24 @@
          style="font-size:5.64444px;stroke-width:0.264583"
          x="166.00639"
          y="123.88929"
-         id="tspan91161">Alternative (non-standard)</tspan><tspan
+         id="tspan3203">Alternative Privileged ISAs</tspan><tspan
          sodipodi:role="line"
          style="font-size:5.64444px;stroke-width:0.264583"
          x="166.00639"
          y="130.94484"
-         id="tspan98287">Privileged ISAs</tspan></text>
+         id="tspan3508">(non-standard: define ECALL/</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;stroke-width:0.264583"
+         x="166.00639"
+         y="138.0004"
+         id="tspan15612"> return as needed)</tspan></text>
     <rect
        style="fill:#ffeeaa;stroke:#800000;stroke-width:0.264999;stroke-linecap:round"
        id="rect104897"
        width="22.38195"
-       height="39.830753"
+       height="32.901882"
        x="165.56648"
-       y="134.74265"
+       y="142.15088"
        rx="5.5563331"
        ry="4.7119708" />
     <rect
@@ -264,7 +269,7 @@
        width="10.48448"
        height="27.939409"
        x="197.30107"
-       y="140.21935"
+       y="147.62758"
        rx="3.3051083"
        ry="2.7313697" />
     <rect
@@ -273,7 +278,7 @@
        width="17.570971"
        height="46.504669"
        x="216.83659"
-       y="153.22711"
+       y="156.40207"
        rx="5.5563335"
        ry="4.7119708" />
     <path
@@ -309,17 +314,17 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-       x="105.88545"
+       x="104.29797"
        y="99.226982"
        id="text36469"><tspan
          sodipodi:role="line"
          style="font-size:5.64444px;text-align:center;text-anchor:middle;stroke-width:0.264583"
-         x="105.88545"
+         x="104.29797"
          y="99.226982"
          id="tspan36467">ECALL instruction</tspan><tspan
          sodipodi:role="line"
          style="font-size:5.64444px;text-align:center;text-anchor:middle;stroke-width:0.264583"
-         x="105.88545"
+         x="104.29797"
          y="106.28253"
          id="tspan1731">(for system calls, e.g.)</tspan></text>
     <rect
@@ -392,5 +397,10 @@
          x="162.39539"
          y="100.55386"
          id="tspan2463">C:   Compressed instructions</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       d="m 108.31085,195.09566 c 37.90653,0.40486 45.73276,-8.95858 45.98204,-55.61543 0.118,-22.08539 -12.83765,-46.184069 -27.14043,-57.401939"
+       id="path896"
+       sodipodi:nodetypes="csc" />
   </g>
 </svg>
